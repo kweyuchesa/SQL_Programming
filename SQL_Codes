@@ -1,0 +1,101 @@
+#Challenge 1
+%%sql
+CREATE TABLE if not exists PC(
+  Code,
+  Model, 
+  Speed,
+  RAM, 
+  HD, 
+  CD, 
+  Price
+);
+SELECT * from PC; 
+
+#Challenge 2 
+#Printer 
+%%sql
+CREATE TABLE if not exists Printer(
+code,
+model,
+speed,
+type,
+price
+);
+SELECT * from Printer;
+
+#Challenge 3
+# Movies SQl Table 
+%%sql
+CREATE TABLE if not exists Movies(
+id,
+title,
+director,
+year,
+length_minutes
+);
+SELECT * from Movies;
+
+#SECTION 4
+#CHALLENGE 1
+# SQL table customer 
+%%sql
+CREATE TABLE IF NOT EXISTS Customer(
+    CustID int,
+    LastName char(25),
+    FirstName char(20)
+);
+SELECT * from Customer;
+
+#cHallenge2
+# SQL table sales 
+%%sql
+CREATE TABLE IF NOT EXISTS Sales(
+    SalesID int,
+    customerID int,
+    name char(25),
+    address varchar(255)
+);
+SELECT * from Sales;
+
+# SQL table employees 
+%%sql
+CREATE TABLE IF NOT EXISTS employees(
+    emp_no int,
+    empName char(25),
+    department char(25),
+    salary int(255)
+);
+SELECT * from employees;
+
+# Challenge 1
+# Let's create a new table called latest_players with similar fields to
+# the already created Players table but specify the default value to unknown
+# SQL latest_players TABLE
+%%sql
+CREATE TABLE if not exists latest_players(
+    id int,
+    name text,
+    age integer default 'Unknown',
+    height float);
+
+SELECT * from latest_players; 
+
+# Challenge 2
+# Let's create a new table called restaurants with the fields
+# - name: string
+# - description: text 
+# - address: string, default value is unknown
+# - user_id: integer
+# - last_orders_at: date
+# We can perform data type external research if need be
+#SQL restaurants table
+%%sql
+CREATE TABLE if not exists restaurants(
+  name str,
+  descr text,
+  address str default 'Unknown',
+  user_id int,
+  last_orders_at date);
+SELECT * from restaurants;
+
+
