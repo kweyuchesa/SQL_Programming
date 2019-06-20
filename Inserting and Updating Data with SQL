@@ -1,0 +1,115 @@
+# We will first load the sql extension into our environment
+%load_ext sql
+# Then connect to our in memory sqlite database
+%sql sqlite://
+
+#Importing Data from csv files 
+import csv
+import pandas as pd
+
+1.2 Importing Data From CSV Files
+# Challenge 1
+# Let's load our Startups.csv file. 
+# Feel free to copy paste the code above and make the necessary modifications
+
+with open('Startups.csv','r') as f:
+    Startups = pd.read_csv(f, index_col=0, encoding='utf-8') 
+    
+%sql DROP TABLE if EXISTS Startups;
+%sql PERSIST Startups;
+
+# Challenge 2
+# Let's load our Transactions.csv file below
+# 
+with open('Transactions.csv','r') as f:
+    Transactions = pd.read_csv(f, index_col=0, encoding='utf-8') 
+
+%sql DROP TABLE if EXISTS Transactions;
+%sql PERSIST Transactions;
+
+# Challenge 3
+# Let's load our Glass.csv file below
+with open('Glass.csv','r') as f:
+    Glass = pd.read_csv(f, index_col=0, encoding='utf-8') 
+
+%sql DROP TABLE if EXISTS Glass;
+%sql PERSIST Glass;
+
+
+1.3 Inserting data into a table
+# Challenge 1
+# Insert a new record into the Interpol table with  
+# Country = Tanzania
+# National Fugitives = 3
+# Wanted Fugitives = Null
+# Possible Hosted Fugitives / Captured Fugitives = 2
+# Region = Sub Saharan Africa
+# Flag = https://www.crwflags.com/art/countries/tanzania.gif
+# 
+%%sql
+INSERT into Interpol (Country, "National_Fugitives", "Wanted_Fugitives", "Possible_Hosted_Fugitives/Captured_Fugitives", Region, Flag)
+VALUES ('Tanzania', '3', 'Null', '2', 'Sub Saharan Africa', 'https://www.crwflags.com/art/countries/tanzania.gif');
+
+SELECT * FROM Interpol;
+
+# Challenge 2
+# Insert any two records of your choosing into the Interpol table
+# 
+%%sql
+INSERT into Interpol (Country, "National_Fugitives", "Wanted_Fugitives", Region)
+VALUES ('Philipines', '6', '4', 'South-America');
+
+SELECT * FROM Interpol;
+
+# Challenge 3
+# Insert any new record in the Startups table only have the following attributes 
+# Company, Mapping_Location, Categories
+# 
+%%sql
+INSERT INTO Startups (Company, Mapping_Location, Categories)
+VALUES ('Chessa LTD', 'Nairobi', 'Fashion');
+
+SELECT * FROM Startups;
+
+
+1.4 Updating records in a table
+# Challenge 1
+# Update the transactions records with the 
+# payment_method = none to Null
+# 
+%%sql
+UPDATE Transactions
+SET payment_method = 'Null'
+WHERE payment_method is null;
+
+SELECT * FROM Transactions; 
+
+# Challenge 2
+# Update the Interpol records with Wanted Fugitives	 = 2
+# to National Fugitives = 2 
+# 
+%%sql
+UPDATE Interpol
+SET "National_Fugitives" = 2
+WHERE "Wanted_Fugitives" = 2;
+
+SELECT * FROM Interpol;
+
+# Challenge 3 
+# Update the transactions records with car_type = "Bus" to 
+# have car_type = "shuttle" and travel_to = "Nairobi Downtown"
+# 
+%%sql
+UPDATE Transactions
+SET car_type = "shuttle",
+    travel_to = "Nairobi Downtown"
+WHERE car_type = "Bus";
+
+SELECT * FROM Transactions; 
+
+1.5 Updating with Conditions
+
+
+
+
+
